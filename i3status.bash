@@ -18,14 +18,16 @@
 #   status_command measure-net-speed-i3status.bash
 # }
 
-i3status -c ~/.config/i3/i3bar/i3status.conf | (read line && echo $line && read line && echo $line && while :
+cd ~/.config/i3/i3bar
+
+i3status -c ./i3status.conf | (read line && echo $line && read line && echo $line && while :
 do
   read line
-  music=$(~/.config/i3/i3bar/music.bash)
-  net=$(~/.config/i3/i3bar/measure-net-speed.bash)
-  gpu=$(~/.config/i3/i3bar/gpuLoad.bash)
-  vram=$(~/.config/i3/i3bar/gpuVram.bash)
-  temp=$(~/.config/i3/i3bar/gpuTemp.bash)
+  music=$(./music.bash)
+  net=$(./measure-net-speed.bash)
+  gpu=$(./gpuLoad.bash)
+  vram=$(./gpuVram.bash)
+  temp=$(./gpuTemp.bash)
   ram=$(free | grep Mem | awk '{ printf("RAM: %.0f%", $4/$2 * 100.0) }')
 
   net_json="{ \"name\":\"net\", \"min_width\":120, \"align\": \"right\", \"full_text\":\"${net}\" },"
