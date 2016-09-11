@@ -25,18 +25,18 @@ do
   read line
   music=$(./music.bash)
   net=$(./measure-net-speed.bash)
-  gpu=$(./gpuLoad.bash)
-  vram=$(./gpuVram.bash)
-  temp=$(./gpuTemp.bash)
+#  gpu=$(./gpuLoad.bash)
+#  vram=$(./gpuVram.bash)
+#  temp=$(./gpuTemp.bash)
   ram=$(free | grep Mem | awk '{ printf("RAM: %.0f%", $4/$2 * 100.0) }')
 
   net_json="{ \"name\":\"net\", \"min_width\":120, \"align\": \"right\", \"full_text\":\"${net}\" },"
   line=${line/'{"name":"ethernet"'/${net_json}'{"name":"ethernet"'}
 
-  gpu_json="{ \"name\":\"gpu\", \"min_width\":60, \"align\": \"right\", \"full_text\":\"${gpu}\" },"
-  vram_json="{ \"name\":\"vram\", \"min_width\":65, \"align\": \"right\", \"full_text\":\"${vram}\" },"
-  temp_json="{ \"name\":\"temp\", \"full_text\":\"${temp}\" }," 
-  line=${line/'{"name":"cpu_usage"'/${gpu_json}${vram_json}${temp_json}'{"name":"cpu_usage"'}
+#  gpu_json="{ \"name\":\"gpu\", \"min_width\":60, \"align\": \"right\", \"full_text\":\"${gpu}\" },"
+#  vram_json="{ \"name\":\"vram\", \"min_width\":65, \"align\": \"right\", \"full_text\":\"${vram}\" },"
+#  temp_json="{ \"name\":\"temp\", \"full_text\":\"${temp}\" }," 
+#  line=${line/'{"name":"cpu_usage"'/${gpu_json}${vram_json}${temp_json}'{"name":"cpu_usage"'}
 
   ram_json="{ \"name\":\"ram\", \"full_text\":\"${ram}\" },"
   line=${line/'{"name":"tztime"'/${ram_json}'{"name":"tztime"'}
